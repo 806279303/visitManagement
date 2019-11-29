@@ -1,0 +1,153 @@
+/* pages/main/index.wxss */
+
+page { 
+  background-color: white;
+  width:100%;
+  overflow-x:hidden;
+ }
+
+.title-content-contentView{
+  display: flex;
+  flex-wrap: nowrap;
+  height: 88rpx;
+  width: 100%;
+  background: #41ABF9; 
+  color: #41ABF9;
+}
+
+.title-content-view{
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  height: 80rpx;
+  flex-direction:column;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+}
+
+.class-select-view{
+  display: flex;
+  align-self: center;
+  align-items: center;
+  height: 60rpx;
+  margin-left: 50rpx;
+  margin-top: 10rpx;
+  margin-right: 30rpx;
+}
+
+.class-select-text{
+  display: flex;
+  font-size: 32rpx;
+  color: white;
+  margin-right: 30rpx;
+}
+
+.class-select-image{
+  display: flex;
+  height: 12rpx;
+  width: 22rpx;
+}
+
+.title-content-text{
+  display: flex;
+  align-self: center;
+  align-items: center;
+  height: 70rpx;
+  border-radius: 0rpx; 
+  border: 0px #099fff solid;
+  color: white;
+  justify-content: center;
+  font-family:"STXihei";
+}
+
+.title-content-lineView{
+  display: flex;
+  align-self: center;
+  align-items: center;
+  height: 6rpx;
+  width: 130rpx;
+  background-color: white;
+  border-radius: 3rpx;
+}
+
+.title-content-textview{
+  display: flex;
+  align-self: center;
+  align-items: center;
+}
+
+.c-main-body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.c-main-cell{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  align-items: center;
+  flex-direction: row;
+  border: 1px black solid;
+  border-top-color: white;
+  border-bottom-color: #f4f4f4;
+  border-left-color: white;
+  border-right-color: white;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.c-main-cell-time{
+   display: flex;
+   height: 100rpx;
+   align-items: center;
+   justify-content: center;
+   font-family:"PingFang-SC-Regular";
+   color: #252525;
+   font-size: 30rpx;
+   margin-left: 40rpx;
+}
+
+.c-main-cell-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 30rpx;
+}
+
+
+.a-bottom-view{
+  display: flex;
+  height: 140rpx;
+  min-height: 140rpx;
+  width: 100%;
+  position: fixed;
+  bottom:0;
+  align-items: center;
+  color: white;
+}
+
+
+.login-button {
+  height: 70rpx;
+  width: 60%;
+  align-self: center;
+  background:linear-gradient(to right, #43CBF4 , #40A1F7);
+  color:white;
+  border-radius: 35rpx; 
+  box-shadow: 1px 8px 10px #B8DDF9;
+  font-size: 28rpx;
+}
+
+.login-button-active{
+ background: rgb(4, 113, 156);
+}
+
+.login-button::after {
+  border-radius: 35rpx; 
+}
+

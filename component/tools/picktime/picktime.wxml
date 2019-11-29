@@ -1,0 +1,4 @@
+<!--components/tools/picktime/picktime.wxml-->
+<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view>{{time}}</view>
+</picker>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "screen":"../../components/tools/screen/screen",
+    "select":"../../components/tools/select/select",
+    "picktime":"../../components/tools/picktime/picktime"
+  }
+}

@@ -1,0 +1,147 @@
+<!--components/newVisitor/newVisitor.wxml-->
+<view class="container">
+      
+<form bindsubmit="formSubmit" class="new_vis_box">
+      <view class="userImg">
+            <view class="user_img_box" catchtap="toUserInfo"></view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        受访者
+                  </text>
+            </view>
+            <view class="r_col new_interviewee">
+                  <input type="text"/>
+                  <view class="vis_del" catchtap="reset_interviewee">
+                        x
+                  </view>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        访问时间
+                  </text>
+            </view>
+            <view class="r_col">
+                  <!-- <input type="text"/> -->
+                  请选择>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        访问事由
+                  </text>
+            </view>
+            <view class="r_col">
+                  <!-- <input type="text"/> -->
+                  请选择>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="" selectable="false" space="false" decode="false">
+                        随行人员
+                  </text>
+            </view>
+            <view class="r_col accompany_peo">
+                  <input type="text" placeholder="无"/>
+                  <view class="vis_accompany" catchtap="openNewAccompany">
+                        +
+                  </view>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="" selectable="false" space="false" decode="false">
+                        随行车辆
+                  </text>
+            </view>
+            <view class="r_col">
+                  <input type="text" placeholder="无"/>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="" selectable="false" space="false" decode="false">
+                        随行物品
+                  </text>
+            </view>
+            <view class="r_col">
+                  <input type="text" placeholder="无"/>
+            </view>
+      </view>
+      <view class="row">
+            <view class="l_col">
+                  <text class="" selectable="false" space="false" decode="false">
+                        备注
+                  </text>
+            </view>
+            <view class="r_col">
+                  <input type="text" placeholder="无"/>
+            </view>
+      </view>
+      <view class="row no_bc">
+            <button class="submitBtn global_linear_gradient" form-type="submit"> 提交申请 </button>
+      </view>
+</form>
+
+
+
+
+
+
+
+
+<!-- 添加人员弹窗 -->
+<screen wx:if="{{isNewVisitor}}">
+      <view class="new_visitor">
+            <view class="new_visitor_header">
+                  添加人员
+            </view>
+            <view class="new_visitor_upload">
+                  点击上传
+            </view>
+            <view class="new_visitor_row">
+                  <view class="new_visitor_row_l">
+                        姓名：
+                  </view>
+                  <view class="new_visitor_row_r">
+                        <input type="text" name="" id=""/>
+                  </view>
+            </view>
+            <view class="new_visitor_row">
+                  <view class="new_visitor_row_l">
+                        身份证号：
+                  </view>
+                  <view class="new_visitor_row_r">
+                        <input type="text" name="" id=""/>
+                  </view>
+            </view>
+            <view class="new_visitor_row">
+                  <view class="new_visitor_row_l">
+                        联系电话：
+                  </view>
+                  <view class="new_visitor_row_r">
+                        <input type="text" name="" id=""/>
+                  </view>
+            </view>
+            <view class="new_visitor_handles">
+                  <view class="new_visitor_handles_l" catchtap="closeNewAccompany">取消</view>
+                  <view class="new_visitor_handles_r global_linear_gradient">添加</view>
+            </view>
+      </view>
+</screen>
+
+</view>

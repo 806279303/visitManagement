@@ -1,0 +1,126 @@
+<!--components/history_detail/history_detail.wxml-->
+<view class="container">
+
+<view class="his_detail_info">
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  预约时间：
+            </view>
+            <view class="his_detail_info_row_r">
+                  2019-10-10 10:09
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  受访者<text decode="{{true}}">&nbsp;&nbsp;&nbsp;</text>：
+            </view>
+            <view class="his_detail_info_row_r">
+                  张老师
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  受访事由：
+            </view>
+            <view class="his_detail_info_row_r">
+                  家长会
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  接访地点：
+            </view>
+            <view class="his_detail_info_row_r">
+                  无
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  随行人员：
+            </view>
+            <view class="his_detail_info_row_r">
+                  无
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  随行车辆：
+            </view>
+            <view class="his_detail_info_row_r">
+                  无
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  随行物品：
+            </view>
+            <view class="his_detail_info_row_r">
+                  无
+            </view>
+      </view>
+
+      <view class="his_detail_info_row">
+            <view class="his_detail_info_row_l">
+                  备 <text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>注：
+            </view>
+            <view class="his_detail_info_row_r">
+                  无
+            </view>
+      </view>
+
+      <view class="his_detail_info_passtime">
+            2019-07-09
+      </view>
+
+      <view class="his_detail_info_state">
+            <text class="" selectable="false" space="false" decode="false">
+                  预约成功
+            </text>
+      </view>
+</view>
+
+<view class="his_detail_state">
+      <view class="his_detail_state_row">
+            <view class="his_detail_state_row_time">
+                  2019-10-10 10:09
+            </view>
+            <view class="his_detail_state_row_dec">
+                  发起申请
+            </view>
+      </view>
+      <view class="his_detail_state_row">
+            <view class="his_detail_state_row_time">
+                  2019-10-10 10:09
+            </view>
+            <view class="his_detail_state_row_dec">
+                  通过审核
+            </view>
+      </view>
+      <view class="his_detail_state_row">
+            <view class="his_detail_state_row_time">
+                  2019-10-10 10:09
+            </view>
+            <view class="his_detail_state_row_dec">
+                  预约成功
+            </view>
+      </view>
+
+      <view class="his_detail_state_icon">
+            <view class="his_detail_state_axis"></view>
+            <view class="round his_detail_state_applicating"></view>
+            <view class="round his_detail_state_passing"></view>
+            <view class="round his_detail_state_success choosed"></view>
+      </view>
+</view>
+
+<view class="his_detail_cancel">
+      <button class="global_linear_gradient" type="default" catchtap="backToHistory">取消访问</button>
+</view>
+
+</view>

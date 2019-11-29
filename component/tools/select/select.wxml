@@ -1,0 +1,17 @@
+<!--components/tools/select/select.wxml-->
+
+<view class="select_wrapper">
+    <view class="select_inside" catchtap="showList">
+        <text class="select_inside_label" selectable="false" space="false" decode="false">
+            {{chosenVal}}
+        </text>
+        <text class="select_inside_icon {{isList?'active_icon':''}}" decode="{{true}}">
+            >
+        </text>
+    </view>
+    <view class="select_children {{isList?'active_show':''}}">
+        <view class="select_child_row" wx:for="{{6}}" data-id="{{index}}" catchtap="chooseCurRow">
+            一条下拉信息
+        </view>
+    </view>
+</view>

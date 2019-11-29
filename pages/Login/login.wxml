@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="c-page-wrapper">
+  <van-toast id="van-toast" />
+  <wxc-dialog class="wxc-dialog" title="{{loginInfo.title}}" content="{{loginInfo.content}}" logName="{{loginInfo.logName}}" logImage="{{loginInfo.logImage}}" bindcancel="onCancel" bindconfirm="onConfirm"></wxc-dialog>
+  <view class="login-back">
+      <image class='background-image' src='/images/login-back.png'></image>    
+      <view class="login-content">
+        <image class='login-image' src="/images/login-logo.png"></image>
+         <text class='login-text'>校园通</text>
+      </view>
+    </view>
+
+  <view class='login-cell'>
+     <image class='login-icon' src='/images/login-school-icon.png'></image>
+
+     <block wx:if="{{schoolsName.length}}">
+      <picker class='picker-view' bindchange="schoolChooseHandler" mode="selector" value= "{{index}}" range="{{schoolsName}}">
+       <text class='login-input' wx:if="{{schoolName}}">{{schoolName}}</text>
+       <text class='login-input' wx:else>请选择学校</text>
+      </picker>
+     </block>
+     <block wx:else>
+        <view class='picker-view' bindtap="schoolListInfoHander">
+        <text class='login-input' wx:if="{{schoolName}}">{{schoolName}}</text>
+        <text class='login-input' wx:else>请选择学校</text>
+        </view>
+     </block>
+    
+     <image class='login-icon' bindtap='downHandler' src='/images/down.png'></image>
+  </view>
+
+   <view class='login-cell'>
+     <image class='login-icon' src='/images/login-user.png'></image>
+     <input class='login-input' placeholder='请输入账号' value="{{account}}" bindinput="accountAction"/>
+   </view>
+
+   <view class='login-cell'>
+     <image class='login-icon' src='/images/login-password.png'></image>
+     <input class='login-input' placeholder='请输入密码' password='true' value="{{password}}" bindinput="passwordAction"/>
+   </view>
+
+  <button class='login-button' hover-class ='login-button-active' bindtap='loginAction'>
+    确定登录
+  </button>
+
+</view>

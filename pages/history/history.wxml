@@ -1,0 +1,76 @@
+<!--components/history/history.wxml-->
+<view class="container">
+    
+<!-- 教室管理端消息提醒 -->
+<view class="message_tip" wx:if="{{!isTeacherManager}}">
+      <view class="message_tip_header">
+            消息提醒:
+      </view>
+      <view class="message_tip_info">
+          <text class="" selectable="false" space="false" decode="false">
+                  您在
+            </text>
+            <text class="high_light" selectable="false" space="false" decode="false">
+                  1
+            </text>
+            <text class="" selectable="false" space="false" decode="false">
+                  小时后有
+            </text>
+            <text class="high_light" selectable="false" space="false" decode="false">
+                  1
+            </text>
+            <text class="" selectable="false" space="false" decode="false">
+                  场访问
+            </text>
+      </view>
+      <view class="message_tip_dec" class="">
+          （超时可能无法正常访问，需要现场登记或重新预约）
+      </view>
+</view>
+
+
+<view class="one_his_app" data-id="1" catchtap="to_detail" wx:for="{{10}}" wx:key="{{index}}">
+      <!-- 头部时间 -->
+      <view class="his_time">
+            <text class="" selectable="false" space="false" decode="false">
+                  预约时间:  
+            </text>
+            <text class="" selectable="false" space="false" decode="false">
+                  2019-10-10 10:09
+            </text>
+      </view>
+      <!-- 相关信息 -->
+      <view class="his_info">
+            <view class="his_info_row">
+                  <view class="his_info_row_l">受访者：</view>
+                  <view class="his_info_row_r">张老师</view>
+            </view>
+            <view class="his_info_row">
+                  <view class="his_info_row_l">受访事由：</view>
+                  <view class="his_info_row_r">家长会</view>
+            </view>
+            <view class="his_info_row">
+                  <view class="his_info_row_l">接访地点：</view>
+                  <view class="his_info_row_r">办公室506</view>
+            </view>
+      </view>
+      <!-- 批准时间 -->
+      <view class="his_passtime">
+            2019-07-09
+      </view>
+      <!-- 状态 -->
+      <view class="his_state">
+            这个是状态
+      </view>
+</view>
+
+
+
+
+<!-- 新建预约 -->
+<view class="new_visitor"  catchtap="toNewVisitor">
+    +
+</view>
+
+
+</view>

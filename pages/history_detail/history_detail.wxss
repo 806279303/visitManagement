@@ -1,0 +1,124 @@
+/* components/history_detail/history_detail.wxss */
+.global_linear_gradient{
+      background-color: rgb(0, 107, 247); /* 不支持线性的时候显示 */
+      background-image: linear-gradient(to right, rgb(30, 183, 230) , rgb(0, 107, 247));
+      color:white;
+}
+.global_linear_gradient:active{
+      background-color: rgb(1, 89, 204); /* 不支持线性的时候显示 */
+      background-image: linear-gradient(to right, rgb(26, 160, 201) , rgb(0, 85, 196));
+      color:rgb(218, 214, 214);
+}
+
+
+
+
+
+.his_detail_info{
+      width: 100%;
+      box-sizing: border-box;
+      padding:42rpx 70rpx 25rpx 63rpx;
+      margin-bottom: 20rpx;
+      background-color: rgb(255, 255, 255);
+      position: relative;
+}
+.his_detail_info .his_detail_info_row{
+      width: 100%;
+      font-size: 28rpx;
+      color: rgb(103,103,103);
+      line-height: 70rpx;
+      letter-spacing: 3rpx;
+}
+.his_detail_info .his_detail_info_row .his_detail_info_row_l{
+      display: inline-block;
+}
+.his_detail_info .his_detail_info_row .his_detail_info_row_r{
+      display: inline-block;
+}
+.his_detail_info .his_detail_info_passtime{
+      position: absolute;
+      top:48rpx;
+      right: 20rpx;
+      font-size: 20rpx;
+      color: rgb(172,172,172);
+}
+.his_detail_info .his_detail_info_state{
+      position: absolute;
+      top:133rpx;
+      right: 32rpx;
+      font-size:36rpx;
+}
+
+
+
+
+.his_detail_state{
+      width: 100%;
+      box-sizing: border-box;
+      padding:42rpx 40rpx 80rpx 0;
+      background-color: white;
+      position: relative;
+}
+.his_detail_state .his_detail_state_row{
+      font-size: 28rpx;
+      margin-left: 61rpx;
+      margin-bottom: 63rpx;
+      color:rgb(103,103,103);
+      /* line-height: 80rpx; */
+}
+.his_detail_state .his_detail_state_row .his_detail_state_row_time{
+      margin-right: 5rpx;
+      display: inline-block;
+      letter-spacing: 3rpx;
+}
+.his_detail_state .his_detail_state_row .his_detail_state_row_dec{
+      margin-left: 10rpx;
+      display: inline-block;
+}
+.his_detail_state .his_detail_state_icon{
+      position: absolute;
+      top: 54rpx;
+      left: 24rpx;
+      width: 2rpx;
+      height: 220rpx;
+      background-color: rgb(220,220,220);
+}
+.his_detail_state .his_detail_state_icon .round{
+      width: 6rpx;
+      height: 6rpx;
+      border-radius: 50%;
+      background-color: rgb(220,220,220);
+      position: absolute;
+      margin-left:-1.5rpx;
+      border:none;
+      transition: all 2s;
+}
+.his_detail_state .his_detail_state_icon .his_detail_state_applicating{
+      top:0;
+}
+.his_detail_state .his_detail_state_icon .his_detail_state_passing{
+      top:49%;
+}
+.his_detail_state .his_detail_state_icon .his_detail_state_success{
+      bottom:0;
+}
+.his_detail_state .his_detail_state_icon .choosed{
+      border:4rpx solid rgb(0,153,255);
+      margin-left:-5rpx;
+}
+
+
+
+
+.his_detail_cancel{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 30rpx;
+}
+.his_detail_cancel button{
+      width: 70%;
+      border-radius: 40rpx;
+      font-weight: normal;
+      color:white;
+}

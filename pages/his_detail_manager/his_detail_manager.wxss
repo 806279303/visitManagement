@@ -1,0 +1,276 @@
+/* components/his_detail_manager/his_detail_manager.wxss */
+.global_linear_gradient{
+    background-color: rgb(0, 107, 247); /* 不支持线性的时候显示 */
+    background-image: linear-gradient(to right, rgb(0,210,255) , rgb(0,114,255));
+    color:white;
+}
+.global_linear_gradient:active{
+    background-color: rgb(1, 89, 204); /* 不支持线性的时候显示 */
+    background-image: linear-gradient(to right, rgb(0,210,255) , rgb(0,114,255));
+    color:rgb(218, 214, 214);
+}
+
+
+.new_vis_box{
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    display: block;
+    /* background-color: gold; */
+}
+.new_vis_box .userImg{
+    width: 100%;
+    padding-top: 73rpx;
+    margin-bottom: 26rpx;
+}
+.new_vis_box .user_img_box{
+    width: 206rpx;
+    height: 206rpx;
+    background-color: white;
+    border:2rpx solid rgb(170,170,170);
+    margin:0 auto;
+}
+.new_vis_box .row{
+    width: 100%;
+    line-height: 101rpx;
+    margin-bottom: 22rpx;
+    background-color: white;
+}
+.new_vis_box .no_bc{
+    background-color: rgba(0, 0, 0, 0);
+}
+.new_vis_box .row .l_col{
+    width: 25%;
+    text-align: left;
+    /* background-color: yellowgreen; */
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding-left: 30rpx;
+}
+.new_vis_box .row .l_col text{
+    display: inline-block;
+    line-height: 0;
+    color:rgb(43,43,43);
+}
+.new_vis_box .row .l_col .red_star{
+    color:#e04444;
+}
+.new_vis_box .row .r_col{
+    width: 70%;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+}
+.new_vis_box .row .r_col input[type="text"]{
+    width: 100%;
+    height: 80rpx;
+    /* border:2rpx solid #313131; */
+    display: inline-block;
+    vertical-align: middle;
+}
+.new_vis_box .row .new_interviewee input[type="text"]{
+    width: 91%;
+}
+.new_vis_box .row .new_interviewee .vis_del{
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+    background-color:rgb(194, 193, 193);
+    color: white;
+    text-align: center;
+    line-height: 25rpx;
+    vertical-align: middle;
+    font-size: 25rpx;
+    display: inline-block;
+    margin-left: 10rpx;
+}
+.new_vis_box .row .accompany_peo .vis_accompany{
+    width: 35rpx;
+    height: 35rpx;
+    border-radius: 50%;
+    background-color:rgb(17, 149, 226);
+    color: white;
+    text-align: center;
+    line-height: 30rpx;
+    vertical-align: middle;
+    font-size: 25rpx;
+    display: inline-block;
+    margin-left: 5rpx;
+}
+.new_vis_box .row .accompany_peo input[type="text"]{
+    width: 91%;
+}
+
+
+
+.handle_btns{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left:0;
+}
+.handle_btns view{
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-weight: normal;
+    height: 96rpx;
+    line-height: 96rpx;
+    border-top: 1rpx solid rgb(226,226,226);
+}
+.handle_btns .handle_btns_l{
+    color:rgb(20,141,224);
+    background-color: white;
+}
+.handle_btns .handle_btns_l:active{
+    background-color: rgb(235, 235, 235);
+}
+/* .new_vis_box .handle_btns .handle_btns_r{
+    
+} */
+
+
+
+.browser{
+    width: 90%;
+    position: absolute;
+    background-color: white;
+    border-radius: 9rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    left:5%;
+    /* overflow: hidden; */
+    box-shadow: 0 10rpx 10rpx rgba(255, 255, 255, 0.2);
+
+}
+
+.new_visitor{
+    top: 15%;
+}
+.new_visitor .new_visitor_header{
+    width: 100%;
+    text-align: center;
+    padding: 30rpx 40rpx;
+}
+.new_visitor .new_visitor_upload{
+    width: 210rpx;
+    height: 210rpx;
+    border:2rpx solid #9b9b9b;
+    line-height: 210rpx;
+    text-align: center;
+    margin: 20rpx 0 40rpx 0;
+    font-size: 20rpx;
+}
+.new_visitor .new_visitor_row{
+    width: 100%;
+    line-height: 60rpx;
+    margin-bottom: 20rpx;
+}
+.new_visitor .new_visitor_row .new_visitor_row_l{
+    width: 25%;
+    /* background-color: thistle; */
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 25rpx;
+}
+.new_visitor .new_visitor_row .new_visitor_row_r{
+    width: 65%;
+    margin-left: 10rpx;
+    text-align: left;
+    display: inline-block;
+    /* background-color: yellowgreen; */
+    vertical-align: middle;
+}
+.new_visitor .new_visitor_row .new_visitor_row_r input[type="text"]{
+    width: 100%;
+    height: 60rpx;
+    display: block;
+    box-sizing: border-box;
+    border:2rpx solid #7a7a7a;
+}
+.new_visitor .new_visitor_handles{
+    width: 100%;
+    margin-top: 30rpx;
+}
+.new_visitor .new_visitor_handles view{
+    width: 50%;
+    box-sizing: border-box;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    display: inline-block;
+}
+.new_visitor .new_visitor_handles .new_visitor_handles_l{
+    border-top: 1rpx solid #949494;
+}
+.new_visitor .new_visitor_handles .new_visitor_handles_r{
+    border-top: 1rpx solid transparent;
+}
+
+
+
+
+
+
+
+
+.vis_options{
+    top:30%;
+    padding: 0 0 134rpx 0;
+    overflow:hidden;
+    align-items: flex-start;
+}
+.vis_options .vis_options_header{
+    width: 100%;
+    padding: 59rpx 0 46rpx 20rpx;
+    color:rgb(103,103,103);
+    font-size: 36rpx;
+}
+.vis_options .vis_options_row{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 41rpx;
+    color:rgb(103,103,103);
+}
+.vis_options .vis_options_row view{
+    display: inline-block;
+}
+.vis_options .vis_options_row .vis_options_row_l{
+    width: 15%;
+    vertical-align: middle;
+    line-height: 50rpx;
+    margin-left: 70rpx;
+    font-size: 30rpx;
+}
+.vis_options .vis_options_row .vis_options_row_r{
+    width: 60%;
+    vertical-align: middle;
+    height: 67rpx;
+}
+.vis_options .vis_options_btns{
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    left: 0;
+}
+.vis_options .vis_options_btns view{
+    width: 50%;
+    text-align: center;
+    height: 116rpx;
+    line-height: 116rpx;
+    display: inline-block;
+    border-top: 1rpx solid rgb(209,209,218);
+    font-size: 36rpx;
+    font-weight: 350;
+}
+.vis_options .vis_options_btns .vis_options_btns_l{
+    color: rgb(148,148,160);
+}
+.vis_options .vis_options_btns .vis_options_btns_r{
+    border-top: 1rpx solid transparent;
+    color:white;
+}

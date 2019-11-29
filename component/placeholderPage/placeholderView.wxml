@@ -1,0 +1,6 @@
+
+  <view  wx:if="{{visible}}" class="placeholder-view" style="height:{{appHeight-20}}px;width:{{appWidth}}px">
+      <image class="placeholder-image" src="{{imageUrl}}" bindtap="imageDidTap"/>
+      <text wx:if="{{placeholderText}}" class="placeholder-text">{{placeholderText}}</text>
+      <text wx:else class="placeholder-text">暂无数据</text>
+  </view>

@@ -1,0 +1,127 @@
+/* components/history/history.wxss */
+.message_tip{
+      width: 100%;
+      background-color: white;
+      padding: 20rpx 0 53rpx 25rpx;
+      margin-bottom: 8rpx;
+}
+.message_tip .message_tip_header{
+      color: rgb(172,172,172);
+      font-size: 30rpx;
+      /* line-height: 30rpx; */
+}
+.message_tip .message_tip_info{
+      text-align: center;
+      color: rgb(82, 82, 82);
+      margin-top: 21rpx;
+}
+.message_tip .message_tip_info text{
+      display: inline-block;
+      line-height: 0;
+      color:rgb(103,103,103);
+      font-size: 34rpx;
+}
+.message_tip .message_tip_info .high_light{
+      font-size: 40rpx;
+      font-weight: 300;
+      color:rgb(255,52,52);
+}
+.message_tip .message_tip_dec{
+      width: 100%;
+      text-align: center;
+      font-size:20rpx;
+      color:rgb(255,52,52);
+      margin: 33rpx 0 0 0 ;
+}
+
+
+
+
+
+
+.one_his_app{
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+      /* border-bottom: 1rpx solid black; */
+      margin-bottom: 3rpx;
+      padding: 42rpx 0 55rpx 26rpx;
+      position: relative;
+      box-sizing: border-box;
+}
+.one_his_app .his_time{
+      /* margin-bottom: 9rpx; */
+}
+.one_his_app .his_time text{
+      display: inline-block;
+      line-height: 0;
+      font-size: 30rpx;
+      color: rgb(172,172,172);
+      letter-spacing: 3rpx;
+}
+
+
+
+.one_his_app .his_info{
+      width: 100%;
+      box-sizing: border-box;
+      padding:24rpx 0 0 128rpx;
+      color: rgb(82, 82, 82);
+      /* background-color: burlywood; */
+}
+.one_his_app .his_info .his_info_row{
+      width: 100%;
+      /* background-color: chartreuse; */
+      /* line-height: 45rpx; */
+      /* margin-top:18rpx; */
+      font-size: 28rpx;
+      line-height:46rpx;
+}
+.one_his_app .his_info .his_info_row .his_info_row_l{
+      width: 27%;
+      /* background-color: chocolate; */
+      display: inline-block;
+}
+.one_his_app .his_info .his_info_row .his_info_row_r{
+      width: 73%;
+      display: inline-block;
+      /* background-color: cornflowerblue; */
+      vertical-align: top;
+      padding-top: 5rpx;
+}
+
+
+
+
+.one_his_app .his_passtime{
+      position: absolute;
+      top:47rpx;
+      right:20rpx;
+      font-size: 20rpx;
+      color: rgb(172,172,172);
+}
+
+.one_his_app .his_state{
+      position: absolute;
+      top:174rpx;
+      right:32rpx;
+      font-size: 36rpx;
+}
+
+
+
+
+.new_visitor{
+      width: 60rpx;
+      height: 60rpx;
+      position:fixed;
+      border-radius: 50%;
+      background-color: #279bc9;
+      bottom:15%;
+      left:50%;
+      margin-left: -25rpx;
+      color:white;
+      font-weight: bold;
+      text-align: center;
+      font-size: 50rpx;
+      line-height: 55rpx;
+}

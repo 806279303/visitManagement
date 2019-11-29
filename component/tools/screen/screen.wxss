@@ -1,0 +1,10 @@
+/* components/tools/screen/screen.wxss */
+.screen_view{
+      width: 100%;
+      background-color: rgba(153, 153, 153, 0.719);
+      position: absolute;
+      top:0;
+      bottom:0;
+      left: 0;
+      z-index: 99;
+}

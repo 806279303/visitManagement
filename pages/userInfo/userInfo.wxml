@@ -1,0 +1,101 @@
+<!--components/userInfo/userInfo.wxml-->
+<view class="container">
+
+<form class="user_info" bindsubmit="userFormSubmit" bindreset="userFormReset">
+      <!-- 用户照片 -->
+      <view class="user_photo">
+            <view class="user_photo_img">
+                  <view class="user_photo_img_l">
+                        <text decode='true'>&lt; </text>
+                  </view>
+                  <view class="user_photo_img_m"></view>
+                  <view class="user_photo_img_r">
+                        <text decode='true'>&gt; </text>
+                  </view>
+            </view>
+            <view class="user_photo_btn">
+                  <button type="default" class="global_linear_gradient">录入照片</button>
+            </view>
+      </view>
+
+
+      <!-- 表单 -->
+      <view class="user_info_row">
+            <view class="user_info_row_l">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        姓名
+                  </text>
+            </view>
+            <view class="user_info_row_r">
+                  <input type="text" name="" id="" maxlength="10"/>
+            </view>
+            <view class="user_info_del">
+                  x
+            </view>
+      </view>
+
+      <view class="user_info_row">
+            <view class="user_info_row_l">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        身份证号
+                  </text>
+            </view>
+            <view class="user_info_row_r">
+                  <input type="text" name="" id="" maxlength="18"/>
+            </view>
+            <view class="user_info_del">
+                  x
+            </view>
+      </view>
+
+      <view class="user_info_row">
+            <view class="user_info_row_l">
+                  <text class="red_star" selectable="false" space="false" decode="false">
+                        *
+                  </text>
+                  <text class="" selectable="false" space="false" decode="false">
+                        联系电话
+                  </text>
+            </view>
+            <view class="user_info_row_r">
+                  <input type="text" name="" id="" maxlength="11"/>
+            </view>
+            <view class="user_info_del">
+                  x
+            </view>
+      </view>
+
+      <view class="user_info_row">
+            <view class="user_info_row_l">
+                  <text class="" selectable="false" space="false" decode="false">
+                        备注
+                  </text>
+            </view>
+            <view class="user_info_row_r">
+                  <input type="text" name="" id=""/>
+            </view>
+            <view class="user_info_del">
+                  x
+            </view>
+      </view>
+
+      <view class="user_info_handles">
+            <view class="user_info_handles_l" catchtap="backToHisDetail">
+                  取消
+            </view>
+            <view class="user_info_handles_r global_linear_gradient">
+                  保存
+            </view>
+      </view>
+
+</form>
+      
+
+      
+</view>

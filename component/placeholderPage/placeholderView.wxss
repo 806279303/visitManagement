@@ -1,0 +1,30 @@
+
+.placeholder-view{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.placeholder-image{
+  display: flex;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  height: 80px;
+  width: 80px;
+}
+
+.placeholder-text{
+ display: flex;
+ align-self: center;
+ align-items: center;
+ align-content: center;
+ padding-top: 15px;
+ color: rgb(196, 194, 194)
+}

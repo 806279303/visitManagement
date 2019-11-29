@@ -1,0 +1,21 @@
+<view >
+   
+   <view class="c-main-body">
+      <block wx:for="{{schoolsName}}" wx:for-item="item" wx:key="k" wx:for-index="i">
+         <view class="c-main-cell" bindtap="onSlelctedIndex" data-idx="{{i}}">
+         <text class="c-main-cell-time">{{item.SchoolName}}</text>
+         <image wx:if="{{!item.selected}}" class="c-main-cell-image" src="../../../images/choose-unsel.png" />
+            <image wx:else="{{item.selected}}" class="c-main-cell-image" src="../../../images/choose-sel.png" />
+         </view>
+      </block>
+   </view>
+
+   <placeholderView wx:if="{{!schoolsName.length}}" placeholderText="暂无教室,下来刷新" appHeight="{{appHeight-20}}" imageUrl="../../../images/classBorad/board-nodata.png"></placeholderView> 
+
+   <view class="a-bottom-view">
+      <button class='login-button' hover-class ='login-button-active' bindtap='sureAction'>
+      确定
+      </button>
+   </view>
+</view>
+

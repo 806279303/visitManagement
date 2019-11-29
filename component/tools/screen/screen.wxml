@@ -1,0 +1,4 @@
+<!--components/tools/screen/screen.wxml-->
+<view class="screen_view">
+      <slot></slot>
+</view>
