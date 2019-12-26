@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "screen":"../../component/tools/screen/screen"
+  }
 }

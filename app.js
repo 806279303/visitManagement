@@ -12,6 +12,7 @@ App({
   statusBarHeight: 0,
   timer: null,
   isFristLanch: false,
+  AppID:'wxe6be07562204f345',
 
   onLaunch: function () {
     // 展示本地存储能力
@@ -54,7 +55,6 @@ App({
         this.naviHomeHeight = res.screenHeight - res.statusBarHeight - naviHeight;
       }
     })
-
     this.isFristLanch = true;
   },
   globalData: {
@@ -70,6 +70,7 @@ App({
     phoneType: 3,
     loginParam: null,
     Psw: null,
+    assetSystemUrl:null,
   },
 
   /**

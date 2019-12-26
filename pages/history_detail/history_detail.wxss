@@ -44,10 +44,15 @@
 }
 .his_detail_info .his_detail_info_state{
       position: absolute;
-      top:133rpx;
+      top:174rpx;
       right: 32rpx;
       font-size:36rpx;
 }
+.his_detail_info .his_detail_info_state .examine{color:rgb(255,52,52)}
+.his_detail_info .his_detail_info_state .success{color:rgb(58,229,18)}
+.his_detail_info .his_detail_info_state .reject{color:rgb(192, 37, 37)}
+.his_detail_info .his_detail_info_state .cancel{color:rgb(49, 49, 49)}
+.his_detail_info .his_detail_info_state .complete{color:rgb(148,148,148)}
 
 
 
@@ -80,8 +85,14 @@
       top: 54rpx;
       left: 24rpx;
       width: 2rpx;
-      height: 220rpx;
+      height: 14rpx;
       background-color: rgb(220,220,220);
+}
+.his_detail_state .sec_state{
+      height: 119rpx;     
+}
+.his_detail_state .third_state{
+      height: 220rpx;
 }
 .his_detail_state .his_detail_state_icon .round{
       width: 6rpx;
@@ -89,11 +100,11 @@
       border-radius: 50%;
       background-color: rgb(220,220,220);
       position: absolute;
-      margin-left:-1.5rpx;
+      margin-left:-2rpx;
       border:none;
       transition: all 2s;
 }
-.his_detail_state .his_detail_state_icon .his_detail_state_applicating{
+/* .his_detail_state .his_detail_state_icon .his_detail_state_applicating{
       top:0;
 }
 .his_detail_state .his_detail_state_icon .his_detail_state_passing{
@@ -101,10 +112,11 @@
 }
 .his_detail_state .his_detail_state_icon .his_detail_state_success{
       bottom:0;
-}
+} */
 .his_detail_state .his_detail_state_icon .choosed{
       border:4rpx solid rgb(0,153,255);
-      margin-left:-5rpx;
+      margin-left:-6rpx;
+      bottom:0;
 }
 
 
@@ -114,7 +126,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 30rpx;
+      margin-top: 52rpx;
 }
 .his_detail_cancel button{
       width: 70%;

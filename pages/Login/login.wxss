@@ -151,6 +151,5 @@ page { background-color: white }
     flex-grow: 1;
     margin-right: 10px;
     color: #818181;
-    z-index: 999;
 }
 

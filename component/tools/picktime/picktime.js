@@ -83,6 +83,7 @@ Component({
 
   //获取时间日期
   bindMultiPickerChange: function(e) {
+    let that = this
     // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
@@ -97,6 +98,7 @@ Component({
     this.setData({
       time: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
     })
+    this.triggerEvent("pickerChange",that.data.time)
     // console.log(this.data.time);
   },
   //监听picker的滚动事件

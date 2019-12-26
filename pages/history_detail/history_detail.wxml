@@ -7,7 +7,15 @@
                   预约时间：
             </view>
             <view class="his_detail_info_row_r">
-                  2019-10-10 10:09
+                  <wxs module="fn">
+                        module.exports = {
+                              subString: function(str,start,end){
+                                    return str ? str.substring(start,end) : ''
+                              }
+                        }
+                  </wxs>
+                  <!-- 2019-10-10 10:09 -->
+                  {{fn.subString(queryInfo.registerTime,0,19)}}
             </view>
       </view>
 
@@ -16,7 +24,7 @@
                   受访者<text decode="{{true}}">&nbsp;&nbsp;&nbsp;</text>：
             </view>
             <view class="his_detail_info_row_r">
-                  张老师
+                  {{queryInfo.userName}}
             </view>
       </view>
 
@@ -25,7 +33,7 @@
                   受访事由：
             </view>
             <view class="his_detail_info_row_r">
-                  家长会
+                  {{queryInfo.visitedReason}}
             </view>
       </view>
 
@@ -34,7 +42,7 @@
                   接访地点：
             </view>
             <view class="his_detail_info_row_r">
-                  无
+                  {{queryInfo.greetPlace}}
             </view>
       </view>
 
@@ -43,7 +51,7 @@
                   随行人员：
             </view>
             <view class="his_detail_info_row_r">
-                  无
+                  {{queryInfo.total}}
             </view>
       </view>
 
@@ -52,7 +60,7 @@
                   随行车辆：
             </view>
             <view class="his_detail_info_row_r">
-                  无
+                  {{queryInfo.carNum}}
             </view>
       </view>
 
@@ -61,7 +69,7 @@
                   随行物品：
             </view>
             <view class="his_detail_info_row_r">
-                  无
+                  {{queryInfo.carriedPackage}}
             </view>
       </view>
 
@@ -70,52 +78,56 @@
                   备 <text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>注：
             </view>
             <view class="his_detail_info_row_r">
-                  无
+                  {{queryInfo.memo}}
             </view>
       </view>
 
       <view class="his_detail_info_passtime">
-            2019-07-09
+            {{queryInfo.submitTime}}
       </view>
 
       <view class="his_detail_info_state">
-            <text class="" selectable="false" space="false" decode="false">
-                  预约成功
-            </text>
+            <view class="examine" wx:if="{{queryInfo.approveStatus == 0}}">待审核</view>
+            <view class="success" wx:elif="{{queryInfo.approveStatus == 1}}">预约成功</view>
+            <view class="reject" wx:elif="{{queryInfo.approveStatus == 2}}">访问驳回</view>
+            <view class="cancel" wx:elif="{{queryInfo.approveStatus == 3}}">访问取消</view>
+            <view class="complete" wx:elif="{{queryInfo.approveStatus == 4}}">已完成</view>
       </view>
 </view>
 
 <view class="his_detail_state">
       <view class="his_detail_state_row">
             <view class="his_detail_state_row_time">
-                  2019-10-10 10:09
+                  <!-- 2019-10-10 10:09 -->
+                  {{queryInfo.submitTime}}
             </view>
             <view class="his_detail_state_row_dec">
                   发起申请
             </view>
       </view>
-      <view class="his_detail_state_row">
+      <view class="his_detail_state_row" wx:if="{{queryInfo.approveStatus !== 0}}">
             <view class="his_detail_state_row_time">
-                  2019-10-10 10:09
+                  {{queryInfo.checkTime}}
             </view>
-            <view class="his_detail_state_row_dec">
-                  通过审核
-            </view>
+            <view class="his_detail_state_row_dec" wx:if="{{queryInfo.approveStatus == 0}}">待审核</view>
+            <view class="his_detail_state_row_dec" wx:elif="{{queryInfo.approveStatus == 1 || queryInfo.approveStatus == 4}}">通过审核</view>
+            <view class="his_detail_state_row_dec" wx:elif="{{queryInfo.approveStatus == 2}}">访问驳回</view>
+            <view class="his_detail_state_row_dec" wx:elif="{{queryInfo.approveStatus == 3}}">访问取消</view>
       </view>
-      <view class="his_detail_state_row">
+      <view class="his_detail_state_row" wx:if="{{queryInfo.approveStatus == 1 || queryInfo.approveStatus == 4}}">
             <view class="his_detail_state_row_time">
-                  2019-10-10 10:09
+                  {{queryInfo.checkTime}}
             </view>
-            <view class="his_detail_state_row_dec">
-                  预约成功
-            </view>
+            <view class="his_detail_state_row_dec" wx:if="{{queryInfo.approveStatus == 1}}">预约成功</view>
+            <view class="his_detail_state_row_dec" wx:elif="{{queryInfo.approveStatus == 4}}">已完成</view>
       </view>
 
-      <view class="his_detail_state_icon">
+      <view class="his_detail_state_icon {{queryInfo.approveStatus == 2 || queryInfo.approveStatus == 3 ? 'sec_state':''}}   {{queryInfo.approveStatus == 1 || queryInfo.approveStatus == 4? 'third_state':''}}">
             <view class="his_detail_state_axis"></view>
-            <view class="round his_detail_state_applicating"></view>
-            <view class="round his_detail_state_passing"></view>
-            <view class="round his_detail_state_success choosed"></view>
+            <view class="round his_detail_state_applicating choosed"></view>
+            <!-- <view wx:if="{{queryInfo.approveStatus == 0}}" class="round his_detail_state_applicating {{queryInfo.approveStatus == 0 ? 'choosed':''}}"></view> -->
+            <!-- <view wx:elif="{{queryInfo.approveStatus == 2}}" class="round his_detail_state_passing {{queryInfo.approveStatus == 2 ? 'choosed':''}}"></view> -->
+            <!-- <view wx:elif="{{queryInfo.approveStatus == 1 || queryInfo.approveStatus == 3 || queryInfo.approveStatus == 4}}" class="round his_detail_state_success  {{queryInfo.approveStatus == 1 || queryInfo.approveStatus == 3 || queryInfo.approveStatus == 4? 'choosed':''}}"></view> -->
       </view>
 </view>
 

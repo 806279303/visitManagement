@@ -29,6 +29,16 @@
     background-color: white;
     border:2rpx solid rgb(170,170,170);
     margin:0 auto;
+    text-align:center;
+}
+.new_vis_box .user_img_box image{
+    width: 100%;
+    height: 100%;
+}
+.new_vis_box .user_img_box .fiftyPer{
+    width: 120rpx;
+    height: 141rpx;
+    margin-top: 32rpx;
 }
 .new_vis_box .row{
     width: 100%;
@@ -223,6 +233,7 @@
     padding: 0 0 134rpx 0;
     overflow:hidden;
     align-items: flex-start;
+    position: relative;
 }
 .vis_options .vis_options_header{
     width: 100%;
@@ -250,6 +261,23 @@
     width: 60%;
     vertical-align: middle;
     height: 67rpx;
+}
+.vis_options .vis_options_row .vis_options_row_r .rejectRemark{
+    width: 100%;
+    height: 67rpx;
+    border:1rpx solid #c0c0c0;
+    vertical-align: middle;
+}
+.vis_options .closeRejectOfVisitor{
+    position: absolute;
+    top:20rpx;
+    right:0rpx;
+    width: 100rpx;
+    height: 100rpx;
+    color:#9e9e9e;
+    text-align: center;
+    line-height: 50rpx;
+    font-weight: bold;
 }
 .vis_options .vis_options_btns{
     width: 100%;

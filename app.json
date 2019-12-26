@@ -1,14 +1,21 @@
 {
   "pages": [
     "pages/Login/login",
+    "pages/newVisitor/newVisitor",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/his_detail_manager/his_detail_manager",
+    "pages/history/history",
+    "pages/history_detail/history_detail",
+    "pages/userInfo/userInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#41ABF9",
+    "navigationBarTitleText": "蓝鸽访客系统",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F3F3F3",
+    "backgroundColorBottom":"F3F3F3"  
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

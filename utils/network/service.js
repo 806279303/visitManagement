@@ -19,7 +19,6 @@ import { get, post, put, del, transmitGet, transmitPost, transmitPut, transmitDe
 export const API_CampusRoot = 'https://leave.lancooedu.com';
 
 
-
 /**
  * 获取图片
  */
@@ -122,3 +121,10 @@ export const transmitDoPutApi = (urlParamsString) => post(`${API_CampusRoot}/tra
 
 //获取学校子系统URL 
 export const subsystemUrlApi = (url, urlParams) => transmitGet(`${url}/Base/WS/Service_Basic.asmx/WS_G_GetSubSystemServerInfoForAllSubject`, urlParams);
+
+
+
+
+
+//访客接口
+export const getVisitorRootAPI = ()=> getApp().globalData.assetSystemUrl

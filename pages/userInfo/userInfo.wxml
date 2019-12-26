@@ -5,16 +5,20 @@
       <!-- 用户照片 -->
       <view class="user_photo">
             <view class="user_photo_img">
-                  <view class="user_photo_img_l">
+                  <!-- <view class="user_photo_img_l">
                         <text decode='true'>&lt; </text>
+                  </view> -->
+                  <view class="user_photo_img_m" catch="chooseUserPhoto">
+                        <image class="" src="{{userPhotoUrl}}" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
+                              
+                        </image>
                   </view>
-                  <view class="user_photo_img_m"></view>
-                  <view class="user_photo_img_r">
+                  <!-- <view class="user_photo_img_r">
                         <text decode='true'>&gt; </text>
-                  </view>
+                  </view> -->
             </view>
             <view class="user_photo_btn">
-                  <button type="default" class="global_linear_gradient">录入照片</button>
+                  <button type="default" class="global_linear_gradient" bindtap="chooseUserPhoto">录入照片</button>
             </view>
       </view>
 
@@ -30,9 +34,9 @@
                   </text>
             </view>
             <view class="user_info_row_r">
-                  <input type="text" name="" id="" maxlength="10"/>
+                  <input type="text" name="" id="" maxlength="10" value="{{userInfo.name}}" bindinput="userNameInput"/>
             </view>
-            <view class="user_info_del">
+            <view class="user_info_del" bindtap="userNameInputDel">
                   x
             </view>
       </view>
@@ -47,9 +51,9 @@
                   </text>
             </view>
             <view class="user_info_row_r">
-                  <input type="text" name="" id="" maxlength="18"/>
+                  <input type="text" name="" id="" maxlength="18" value="{{userInfo.id_num}}" bindinput="userCardInput"/>
             </view>
-            <view class="user_info_del">
+            <view class="user_info_del" bindtap="userCardInputDel">
                   x
             </view>
       </view>
@@ -64,9 +68,9 @@
                   </text>
             </view>
             <view class="user_info_row_r">
-                  <input type="text" name="" id="" maxlength="11"/>
+                  <input type="text" name="" id="" maxlength="11" value="{{userInfo.phone}}" bindinput="userPhoneInput"/>
             </view>
-            <view class="user_info_del">
+            <view class="user_info_del" bindtap="userPhoneInputDel">
                   x
             </view>
       </view>
@@ -78,9 +82,9 @@
                   </text>
             </view>
             <view class="user_info_row_r">
-                  <input type="text" name="" id=""/>
+                  <input type="text" name="" id="" value="{{userInfo.memo}}" bindinput="userRemarkInput"/>
             </view>
-            <view class="user_info_del">
+            <view class="user_info_del" bindtap="userRemarkInputDel">
                   x
             </view>
       </view>
@@ -89,7 +93,7 @@
             <view class="user_info_handles_l" catchtap="backToHisDetail">
                   取消
             </view>
-            <view class="user_info_handles_r global_linear_gradient">
+            <view class="user_info_handles_r global_linear_gradient" catchtap="updateUserInfo">
                   保存
             </view>
       </view>

@@ -23,7 +23,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.3",
+	"libVersion": "2.8.3",
 	"appid": "wxe6be07562204f345",
 	"projectname": "VisitorsSystem",
 	"debugOptions": {

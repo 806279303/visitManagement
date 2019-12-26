@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "screen":"../../components/tools/screen/screen"
+    "screen":"../../component/tools/screen/screen",
+    "picktime":"../../component/tools/picktime/picktime"
   }
 }

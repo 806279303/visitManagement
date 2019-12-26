@@ -100,6 +100,7 @@ export function request(method, url, data, header = { 'Content-Type': 'applicati
           console.info('请求失败：', response)
           reject(response.fail)
         }
+        console.groupEnd();
       },
     });
   });
@@ -110,7 +111,7 @@ export function transmitPostRequest(method, url, data, header = { 'Content-Type'
 
   var newUrl = API_CampusRootUrl + '/transmit/doPost';
   var transmitParams = Utils.transmitParam(data, url)
-  console.info(method, newUrl);
+  console.info(method, newUrl, data);
   if (transmitParams) console.info('参数：', transmitParams);
   return new Promise((resolve, reject) => {
     const response = {};
@@ -138,11 +139,12 @@ export function transmitPostRequest(method, url, data, header = { 'Content-Type'
             console.info('请求失败：', response.success.data.Content);
             reject(response.success.data.Content)
           }
-        } else {
+        } else {  
           console.info('请求失败：', response.fail);
           console.info('请求失败：', response)
           reject(response.fail)
         }
+        console.groupEnd();
       },
     });
   });
@@ -166,7 +168,6 @@ export function transmitPutRequest(method, url, data, header = { 'Content-Type':
       fail: (error) => response.fail = error,
       complete() {
         if (response.success) {
-
           if (response.success.data.Result) {
             console.info('请求成功：', response.success);
             try {
@@ -186,6 +187,7 @@ export function transmitPutRequest(method, url, data, header = { 'Content-Type':
           console.info('请求失败：', response)
           reject(response.fail)
         }
+        console.groupEnd();
       },
     });
   });
@@ -230,6 +232,7 @@ export function transmitDeleteRequest(method, url, data, header = { 'Content-Typ
           console.info('请求失败：', response)
           reject(response.fail)
         }
+        console.groupEnd();
       },
     });
   });
@@ -240,6 +243,7 @@ export function transmitGetRequest(method, url, data, header = { 'Content-Type':
   console.group('==============>新请求<==============');
   const newUrl = API_CampusRootUrl + '/transmit/doGet';
   var reuqestUrl = url
+  console.log('url',reuqestUrl)
   if (data) {
     reuqestUrl = url + '?';
     for (const key in data) {
@@ -278,12 +282,12 @@ export function transmitGetRequest(method, url, data, header = { 'Content-Type':
             console.info('请求失败：', response.success.data.Content);
             reject(response.success.data.Content)
           }
-
         } else {
           console.info('请求失败：', response.fail);
           console.info('请求失败：', response)
           reject(response.fail)
         }
+        console.groupEnd();
       },
     });
   });

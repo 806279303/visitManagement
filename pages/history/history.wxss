@@ -1,4 +1,15 @@
 /* components/history/history.wxss */
+
+.no_history_content{
+      width: 100%;
+      padding:50rpx 0;
+      text-align: center;
+      color:#b3b3b3;
+      font-size: 35rpx;
+}
+
+
+
 .message_tip{
       width: 100%;
       background-color: white;
@@ -79,17 +90,31 @@
 .one_his_app .his_info .his_info_row .his_info_row_l{
       width: 27%;
       /* background-color: chocolate; */
+      vertical-align: middle;
       display: inline-block;
 }
 .one_his_app .his_info .his_info_row .his_info_row_r{
       width: 73%;
       display: inline-block;
       /* background-color: cornflowerblue; */
-      vertical-align: top;
+      vertical-align: middle;
       padding-top: 5rpx;
 }
 
 
+.refAni{
+      transition: all .1s ease-in-out;
+}
+.refresh{
+      width: 100%;
+      text-align: center;
+      line-height: 100rpx;
+      height: 0;
+      overflow: hidden;
+}
+.refreshHei{
+      height: 100rpx;
+}
 
 
 .one_his_app .his_passtime{
@@ -106,22 +131,27 @@
       right:32rpx;
       font-size: 36rpx;
 }
+.one_his_app .examine{color:rgb(255,52,52)}
+.one_his_app .success{color:rgb(58,229,18)}
+.one_his_app .reject{color:rgb(192, 37, 37)}
+.one_his_app .cancel{color:rgb(49, 49, 49)}
+.one_his_app .complete{color:rgb(148,148,148)}
 
 
 
 
 .new_visitor{
-      width: 60rpx;
-      height: 60rpx;
+      width: 63rpx;
+      height: 63rpx;
       position:fixed;
       border-radius: 50%;
-      background-color: #279bc9;
+      background-color: rgb(0,153,255);
       bottom:15%;
       left:50%;
-      margin-left: -25rpx;
+      margin-left: -27rpx;
       color:white;
       font-weight: bold;
       text-align: center;
-      font-size: 50rpx;
-      line-height: 55rpx;
+      font-size: 55rpx;
+      line-height: 52rpx;
 }

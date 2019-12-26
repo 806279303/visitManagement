@@ -1,9 +1,12 @@
 <!--components/newVisitor/newVisitor.wxml-->
 <view class="container">
       
-<form bindsubmit="formSubmit" class="new_vis_box">
+<form bindsubmit="newVisInfoSubmit" class="new_vis_box">
       <view class="userImg">
-            <view class="user_img_box" catchtap="toUserInfo"></view>
+            <view class="user_img_box" catchtap="toUserInfo">
+                  <image class="fiftyPeree" wx:if="{{!isVisitorImageErr}}" src="{{visitorImageUrl}}" mode="scaleToFill" lazy-load="false" binderror="showErrorVisitorImage" bindload=""/>
+                  <image class="fiftyPer" wx:else src="../../images/visitor/no_userimage.png" mode="scaleToFill" lazy-load="false" bindload=""/>
+            </view>
       </view>
       <view class="row">
             <view class="l_col">
@@ -15,10 +18,15 @@
                   </text>
             </view>
             <view class="r_col new_interviewee">
-                  <input type="text"/>
+                  <input value="{{newInterviewee}}" catchtap="intervieweeClick" bindinput="intervieweeInput" bindblur="intervieweeBlur" type="text" name="interviewee" focus="{{true}}" maxlength="10"/>
                   <view class="vis_del" catchtap="reset_interviewee">
                         x
                   </view>
+                  <scroll-view scroll-y class="visited_select" wx:if="{{isVisitedSelect}}">
+                        <view wx:for="{{filterInterInfo}}" data-curInterInfo="{{item}}" catchtap="chooseCurInter">
+                              {{item.userName}}
+                        </view>
+                  </scroll-view>
             </view>
       </view>
       <view class="row">
@@ -32,7 +40,7 @@
             </view>
             <view class="r_col">
                   <!-- <input type="text"/> -->
-                  请选择>
+                  <picktime bind:pickerChange="timeChanged"/>
             </view>
       </view>
       <view class="row">
@@ -46,7 +54,10 @@
             </view>
             <view class="r_col">
                   <!-- <input type="text"/> -->
-                  请选择>
+                  <input class="causeInput" bindinput="causeInput" value="{{causeInputVal}}" wx:if="{{causeVal == '其他'}}" focus="{{causeInputFocus}}"/>
+                  <picker class="causePick" bindchange="causeChanged" value="{{causeIndex}}" range="{{causeArr}}">
+                        {{causeVal == '其他'?('('+causeVal+')'):causeVal}}
+                  </picker>
             </view>
       </view>
       <view class="row">
@@ -56,7 +67,7 @@
                   </text>
             </view>
             <view class="r_col accompany_peo">
-                  <input type="text" placeholder="无"/>
+                  <input type="text" value="{{accomPeo}}" placeholder="无" name="accompany_peo" disabled="{{true}}"/>
                   <view class="vis_accompany" catchtap="openNewAccompany">
                         +
                   </view>
@@ -67,9 +78,27 @@
                   <text class="" selectable="false" space="false" decode="false">
                         随行车辆
                   </text>
+                  
             </view>
-            <view class="r_col">
-                  <input type="text" placeholder="无"/>
+            <view class="r_col accompany_peo">
+                   <wxs module="fn">
+                        module.exports = {
+                              subString: function(str,start,end){
+                                    return str ? str.substring(start,end) : ''
+                              },
+                              joinStr: function(arr){
+                                    if(arr.length <= 2){
+                                          return arr.join('|')
+                                    }else{
+                                          return arr.length + '辆'
+                                    }
+                              }
+                        }
+                  </wxs>
+                  <input type="text" value="{{fn.joinStr(accomCarArr)}}" disabled="{{true}}" placeholder="无" name="accompany_car"/>
+                  <view class="vis_accompany" catchtap="openAccompanyCar">
+                        +
+                  </view>
             </view>
       </view>
       <view class="row">
@@ -79,7 +108,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text" placeholder="无"/>
+                  <input type="text" placeholder="无" name="accompany_carry"/>
             </view>
       </view>
       <view class="row">
@@ -89,7 +118,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text" placeholder="无"/>
+                  <input type="text" placeholder="无" name="remark"/>
             </view>
       </view>
       <view class="row no_bc">
@@ -106,19 +135,39 @@
 
 <!-- 添加人员弹窗 -->
 <screen wx:if="{{isNewVisitor}}">
-      <view class="new_visitor">
+      <view class="dialogBox new_visitor">
             <view class="new_visitor_header">
                   添加人员
             </view>
-            <view class="new_visitor_upload">
-                  点击上传
+            <view class="new_visitor_img">
+                  <view class="new_visitor_arrow new_visitor_left" catchtap="preAccom">
+                        <text class="" selectable="false" space="false" decode="true">
+                              &lt;
+                        </text>
+                  </view>
+                  <view class="new_visitor_upload" catchtap="chooseVisImg">
+                        <image wx:if="{{accomImgUrl!==''}}" class="" src="{{accomImgUrl}}" mode="scaleToFill" lazy-load="false" binderror="accomImgError" bindload="">
+                              
+                        </image>
+                        <view wx:else>点击上传</view>
+                  </view>
+                  <view class="new_visitor_arrow new_visitor_right" catchtap="nextAccom">
+                        <text class="" selectable="false" space="false" decode="true">
+                              &gt;
+                        </text>
+                  </view>
             </view>
             <view class="new_visitor_row">
                   <view class="new_visitor_row_l">
                         姓名：
                   </view>
                   <view class="new_visitor_row_r">
-                        <input type="text" name="" id=""/>
+                        <input type="text" name="new_visitor_accomName" id="" value="{{accomName}}" catchtap="accomNameClick" bindinput="accomNameInput"/>
+                        <scroll-view class="accomNameBox" scroll-y="{{true}}" wx:if="{{accomNameList}}">
+                              <view class="accomNameRow" catchtap="chooseAccomList" wx:for="{{filterAccomList}}" data-curAccomList="{{item}}">
+                                    {{item.name}}
+                              </view>
+                        </scroll-view> 
                   </view>
             </view>
             <view class="new_visitor_row">
@@ -126,7 +175,7 @@
                         身份证号：
                   </view>
                   <view class="new_visitor_row_r">
-                        <input type="text" name="" id=""/>
+                        <input type="text" name="new_visitor_accomCard" id="" value="{{accomCard}}" bindinput="accomCardInput"/>
                   </view>
             </view>
             <view class="new_visitor_row">
@@ -134,12 +183,52 @@
                         联系电话：
                   </view>
                   <view class="new_visitor_row_r">
-                        <input type="text" name="" id=""/>
+                        <input type="text" name="new_visitor_accomPhone" id="" value="{{accomPhone}}" bindinput="accomPhoneInput"/>
+                  </view>
+            </view> 
+            <view class="new_visitor_handles" wx:if="{{curAccomIdx == accomArr.length}}">
+                  <view class="new_visitor_handles_l" catchtap="closeNewAccompany">取消</view>
+                  <view type="submit" class="new_visitor_handles_r global_linear_gradient" catchtap="insertNewAccom">添加</view>
+            </view>
+            <view class="new_visitor_handles" wx:else>
+                  <view class="new_visitor_handles_l" catchtap="delAccom">删除</view>
+                  <view type="submit" class="new_visitor_handles_r global_linear_gradient" catchtap="updateAccom">确认</view>
+            </view>
+      </view>
+</screen>
+
+
+<!-- 添加人员弹窗 -->
+<screen wx:if="{{isNewCar}}">
+      <view class="dialogBox new_visitor new_car">
+            <view class="new_visitor_header">
+                  <view class="new_car_l" catchtap="preAccomCar">
+                        <text class="" selectable="false" space="false" decode="true">
+                              &lt;
+                        </text>
+                  </view>
+                  <view>添加随行车辆</view>
+                  <view class="new_car_l" catchtap="nextAccomCar">
+                        <text class="" selectable="false" space="false" decode="true">
+                              &gt;
+                        </text>
                   </view>
             </view>
-            <view class="new_visitor_handles">
-                  <view class="new_visitor_handles_l" catchtap="closeNewAccompany">取消</view>
-                  <view class="new_visitor_handles_r global_linear_gradient">添加</view>
+            <view class="new_visitor_row">
+                  <view class="new_visitor_row_l">
+                        车牌号：
+                  </view>
+                  <view class="new_visitor_row_r">
+                        <input type="text" name="new_visitor_accomPhone" id="" value="{{accomCar}}" bindinput="accomCarInput"/>
+                  </view>
+            </view> 
+            <view class="new_visitor_handles" wx:if="{{curAccomCarIdx == accomCarArr.length}}">
+                  <view class="new_visitor_handles_l" catchtap="closeAccompanyCar">取消</view>
+                  <view type="submit" class="new_visitor_handles_r global_linear_gradient" catchtap="insertNewCar">添加</view>
+            </view>
+            <view class="new_visitor_handles" wx:else>
+                  <view class="new_visitor_handles_l" catchtap="delAccomCar">删除</view>
+                  <view type="submit" class="new_visitor_handles_r global_linear_gradient" catchtap="updateAccomCar">确认</view>
             </view>
       </view>
 </screen>

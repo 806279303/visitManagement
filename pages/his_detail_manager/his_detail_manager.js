@@ -1,51 +1,12 @@
 // pages/his_detail_manager/his_detail_manager.js
 
 import tools from '../../utils/util'
-
-
-const date = new Date();
-const years = [];
-const months = [];
-const days = [];
-const hours = [];
-const minutes = [];
-//获取年
-for (let i = 2018; i <= date.getFullYear() + 5; i++) {
-  years.push("" + i);
-}
-//获取月份
-for (let i = 1; i <= 12; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  months.push("" + i);
-}
-//获取日期
-for (let i = 1; i <= 31; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  days.push("" + i);
-}
-//获取小时
-for (let i = 0; i < 24; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  hours.push("" + i);
-}
-//获取分钟
-for (let i = 0; i < 60; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  minutes.push("" + i);
-}
-
-
-
-
-
+import visitorRegApi from '../../utils/api/visitorReg'
+import visitorApi from '../../utils/api/visitor'
+import util from '../../utils/util'
+import utils from '../../utils/common/util'
+import {getVisitorRootAPI} from '../../utils/network/service'
+var app =  getApp();
 
 
 Page({
@@ -56,177 +17,215 @@ Page({
   data: {
     winHei:null,
     isChoosePlaceOfVisitor:false,
+    isChooseRejectOfVisitor:false,
+
+    queryInfo:{},
+
+    isVisitorImageErr:false,
 
 
-    time: '请选择>',
-    multiArray: [years, months, days, hours, minutes],
-    multiIndex: [0, 9, 16, 10, 17],
-    choose_year: '',
+    buildings:[],
+    chosenBuildingName:'',
+    rooms:[],
+    chosenRoomName:'',
+    buildingsAndRooms:[],
+
+    rejectReason:['出差中','上课中','其他'],
+    chosenRejectReason:'',
+    rejectRemark:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
+    let that = this,
+        queryInfo = JSON.parse(options.queryInfo)
+    queryInfo.approveStatus = parseInt(queryInfo.approveStatus) 
+    queryInfo.visitor_image = getVisitorRootAPI() + queryInfo.visitor_image
     const { height : winHei } = tools.getClientInfoOfRPX()
     that.setData({
-      winHei:winHei-96+'rpx'
+      winHei:winHei-96+'rpx',
+      queryInfo,
     })
 
-    //设置默认的年份
+    //尝试获取教室身份信息
+    visitorApi.searchVisitorInfoApi(app.globalData.userID).then(res=>{
+      const {result, code} = res
+      if(code == 1){
+        queryInfo.visitor_image = getVisitorRootAPI() + result[0].visitor_image
+        console.log(queryInfo.visitor_image)
+        that.setData({
+          queryInfo,
+          isVisitorImageErr:false
+        })
+      }
+    })
+  },
+
+  toUserInfo(){
+    wx.navigateTo({
+      url: '../userInfo/userInfo',
+      success: (result)=>{
+        
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+  },
+
+  showErrorVisitorImage(){
     this.setData({
-      choose_year: this.data.multiArray[0][0]
+      isVisitorImageErr:true
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  //设置rooms
+  setRooms(){
+    const chosenBuildingName = this.data.chosenBuildingName,
+          buildingsAndRooms = this.data.buildingsAndRooms
+    let rooms = [],that =this
+    if(chosenBuildingName == '')return
+    for(let i=0;i<buildingsAndRooms.length;i++){
+      console.log(buildingsAndRooms[i].buildingName)
+      console.log(chosenBuildingName)
+      if(buildingsAndRooms[i].buildingName == chosenBuildingName){
+        rooms.push(buildingsAndRooms[i].roomName)
+      }
+    }
+    that.setData({rooms})
+    console.log(that.data.rooms)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   //选择接访地点
   openVisOptions(){
     let that = this
+    app.showLoading('楼宇加载中',true)
     that.setData({
       isChoosePlaceOfVisitor:true
+    })
+    visitorRegApi.getAllBuildingApi().then(res=>{
+      const { result, code } = res
+      if(code == 1){
+        app.hideLoading()
+        let buildings = [], rooms = []
+        // utils
+        for(let i=0;i<result.length;i++){
+          // buildings.push({
+          //   buildingName:result[i].buildingName,
+          //   buildingId:result[i].buildingId
+          // })
+          buildings.push(result[i].buildingName)
+        }
+        buildings = utils.unique(buildings)
+        console.log(buildings)
+        that.setData({
+          buildingsAndRooms:result,
+          buildings
+        })
+        that.setRooms()
+      }else{
+        app.hideLoading()
+        app.showToastError('获取楼宇信息失败，请重新打开')
+      }
+    })
+  },
+  buildingChanged(e){
+    this.setData({
+      chosenBuildingName:e.detail.value
+    })
+    this.setRooms()
+  },
+  roomChanged(e){
+    this.setData({
+      chosenRoomName:e.detail.value
+    })
+  },
+
+
+  confirmVisOptions(){//确认通过
+    let that = this,roomId=null
+    const buildingName = this.data.chosenBuildingName,
+          roomName = this.data.chosenRoomName,
+          buildingsAndRooms = this.data.buildingsAndRooms
+    for(let i=0;i<buildingsAndRooms.length;i++){
+      if(buildingsAndRooms[i].buildingName == buildingName && buildingsAndRooms[i].roomName == roomName){
+        roomId = buildingsAndRooms[i].roomId
+      }
+    }
+    if(!roomId){
+      app.showToastError('获取异常，请重新选择')
+      return
+    }
+    const sendData = {
+      approve_status: "1",
+      check_time:util.formatTime(new Date()),
+      greetplace:buildingName + roomId,
+      registeration_id:that.data.queryInfo.registerationId
+    }
+    console.log(sendData)
+    visitorRegApi.updateVisitedInfoApi(sendData).then(res=>{
+      const { result, code } = res
+      if(code == 1){
+        console.log(result)
+        app.showToastSuccess('通过操作成功')
+        wx.navigateBack({
+          delta: 1
+        });
+      }else{
+        app.showToastError('操作失败，请重试')
+      }
     })
   },
   //取消选择接访地点
   cancelVisOptions(){
     let that = this
     that.setData({
-      isChoosePlaceOfVisitor:false
+      isChoosePlaceOfVisitor:false,
+      chosenBuildingName:'',
+      chosenRoomName:'',
     })
   },
-
-
-  //获取时间日期
-  bindMultiPickerChange: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
+  closeRejectOfVisitor(){
+    let that = this
+    that.setData({
+      isChooseRejectOfVisitor:false
     })
-    const index = this.data.multiIndex;
-    const year = this.data.multiArray[0][index[0]];
-    const month = this.data.multiArray[1][index[1]];
-    const day = this.data.multiArray[2][index[2]];
-    const hour = this.data.multiArray[3][index[3]];
-    const minute = this.data.multiArray[4][index[4]];
-    // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
-    this.setData({
-      time: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
-    })
-    // console.log(this.data.time);
   },
-  //监听picker的滚动事件
-  bindMultiPickerColumnChange: function(e) {
-    //获取年份
-    if (e.detail.column == 0) {
-      let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
-      console.log(choose_year);
-      this.setData({
-        choose_year
-      })
+  rejectVis(){
+    let that = this
+    that.setData({
+      isChooseRejectOfVisitor:true
+    })
+  },
+  rejectReasonChanged(e){
+    this.setData({
+      chosenRejectReason:e.detail.value
+    })
+  },
+  rejectRemarkInput(e){
+    this.setData({
+      rejectRemark:e.detail.value
+    })
+  },
+  rejectVisOptions(){//驳回提交
+    let that = this
+    const sendData = {
+      approve_status: "2",
+      check_time:util.formatTime(new Date()),
+      deny_reason:this.data.chosenRejectReason,
+      memo:this.data.rejectRemark,
+      registeration_id:that.data.queryInfo.registerationId
     }
-    //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    if (e.detail.column == 1) {
-      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
-      let temp = [];
-      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
-        for (let i = 1; i <= 31; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
+    visitorRegApi.updateVisitedInfoApi(sendData).then(res=>{
+      const { result, code } = res
+      if(code == 1){
+        console.log(result)
+        app.showToastSuccess('驳回成功')
+        wx.navigateBack({
+          delta: 1
         });
-      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
-        for (let i = 1; i <= 30; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
-        });
-      } else if (num == 2) { //判断2月份天数
-        let year = parseInt(this.data.choose_year);
-        console.log(year);
-        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
-          for (let i = 1; i <= 29; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        } else {
-          for (let i = 1; i <= 28; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        }
+      }else{
+        app.showToastError('驳回失败，请重试')
       }
-    }
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    this.setData(data);
+    })
   },
 })

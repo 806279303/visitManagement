@@ -14,7 +14,13 @@ Component({
    */
   data: {
     isList:false,
-    chosenVal:'初始化文字'
+    chosenVal:''
+  },
+
+  lifetimes:{
+    attached(){
+
+    }
   },
 
   /**
@@ -29,13 +35,13 @@ Component({
     },
     //选择当前行
     chooseCurRow(e){
-      const id = e.currentTarget.dataset.id
+      const val = e.currentTarget.dataset.val
       let that = this
       that.setData({
-        chosenVal:'当前选择id'+id,
+        chosenVal:val,
         isList:false
       })
-      that.triggerEvent('selectChanged',{value:id})
+      that.triggerEvent('selectChanged',{value:val})
     }
   }
 })

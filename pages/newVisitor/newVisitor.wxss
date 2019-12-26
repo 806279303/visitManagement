@@ -28,6 +28,16 @@
       background-color: rgb(255, 255, 255);
       border:2rpx solid rgb(170,170,170);
       margin:0 auto;
+      text-align: center;
+}
+.new_vis_box .user_img_box image{
+      width: 100%;
+      height: 100%;
+}
+.new_vis_box .user_img_box .fiftyPer{
+      width: 120rpx;
+      height: 141rpx;
+      margin-top: 32rpx;
 }
 .new_vis_box .row{
       width: 100%;
@@ -43,13 +53,13 @@
       background-color: rgba(0, 0, 0, 0);
 }
 .new_vis_box .row .l_col{
-      width: 25%;
+      width: 26%;
       text-align: left;
       /* background-color: yellowgreen; */
       display: inline-block;
       vertical-align: middle;
       box-sizing: border-box;
-      padding-left: 15rpx;
+      padding-left: 32rpx;
 }
 .new_vis_box .row .l_col text{
       display: inline-block;
@@ -61,7 +71,7 @@
       color:rgb(255,50,50);
 }
 .new_vis_box .row .r_col{
-      width: 70%;
+      width: 69%;
       text-align: right;
       display: inline-block;
       vertical-align: middle;
@@ -76,6 +86,25 @@
       vertical-align: middle;
       color:rgb(43,43,43);
 }
+
+
+.new_vis_box .row .r_col .causeInput{
+      display: inline-block;
+      /* border:1rpx solid #313131; */
+      height: 80rpx;
+      vertical-align: middle;
+      color:#313131;
+}
+.new_vis_box .row .r_col .causePick{
+      display: inline-block;
+      /* border:1rpx solid #c55151; */
+}
+
+
+
+.new_vis_box .row .new_interviewee{
+      position: relative;
+}
 .new_vis_box .row .new_interviewee input[type="text"]{
       width: 91%;
 }
@@ -88,10 +117,38 @@
       text-align: center;
       line-height: 25rpx;
       vertical-align: middle;
-      font-size: 25rpx;
+      font-size: 30rpx;
+      font-weight: 500;
       display: inline-block;
       margin-left: 10rpx;
 }
+.new_vis_box .row .new_interviewee .visited_select{
+      width: 91%;
+      position: absolute;
+      top: 80rpx;
+      min-height: 60rpx;
+      max-height: 200rpx;
+      box-shadow: 0 2rpx 5rpx rgba(0, 0, 0,.4);
+      border-top: 1rpx solid #f0f0f0;
+      background-color: rgb(255, 255, 255);
+}
+.new_vis_box .row .new_interviewee .visited_select view{
+      width: 100%;
+      height: 60rpx;
+      border-right: 1rpx solid #b6b6b6;
+      border-left: 1rpx solid #b6b6b6;
+      border-bottom: 1rpx solid #b6b6b6;
+      font-size: 25rpx;
+      line-height: 60rpx;
+      box-sizing: border-box;
+      padding-right: 10rpx;
+      color:#313131;
+}
+
+
+
+
+
 .new_vis_box .row .accompany_peo .vis_accompany{
       width: 35rpx;
       height: 35rpx;
@@ -101,7 +158,8 @@
       text-align: center;
       line-height: 30rpx;
       vertical-align: middle;
-      font-size: 25rpx;
+      font-size: 30rpx;
+      font-weight: 500;
       display: inline-block;
       margin-left: 5rpx;
 }
@@ -124,9 +182,7 @@
 
 
 
-
-
-.new_visitor{
+.dialogBox{
       width: 90%;
       position: absolute;
       background-color: white;
@@ -135,9 +191,12 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      overflow: hidden;
+}
+
+.new_visitor{
       top: 15%;
       left:5%;
-      overflow: hidden;
 }
 .new_visitor .new_visitor_header{
       width: 100%;
@@ -146,16 +205,47 @@
       color: rgb(103,103,103);
       font-size: 36rpx;
 }
+.new_visitor .new_visitor_img{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 15rpx 0 48rpx 0;
+}
+.new_visitor .new_visitor_arrow{
+      width: 200rpx;
+      height: 205rpx;
+      /* background-color: blueviolet; */
+      text-align: center;
+      vertical-align: middle;
+      /* line-height: 205rpx; */
+}
+.new_visitor .new_visitor_arrow text{
+      line-height: 70rpx;
+      color:rgb(161, 161, 161);
+}
 .new_visitor .new_visitor_upload{
       width: 205rpx;
       height: 205rpx;
       border:2rpx solid rgb(170,170,170);
       line-height: 205rpx;
       text-align: center;
-      margin: 15rpx 0 48rpx 0;
       font-size: 18rpx;
+      overflow: hidden;
       color: rgb(136,136,136);
 }
+.new_visitor .new_visitor_upload image{
+      width: 100%;
+      height: 100%;
+}
+.new_visitor .new_visitor_right{
+      
+}
+.new_visitor .new_visitor_right text{
+      
+}
+
+
+
 .new_visitor .new_visitor_row{
       width: 100%;
       line-height: 60rpx;
@@ -178,6 +268,7 @@
       display: inline-block;
       /* background-color: yellowgreen; */
       vertical-align: middle;
+      position: relative;
 }
 .new_visitor .new_visitor_row .new_visitor_row_r input[type="text"]{
       width: 100%;
@@ -187,6 +278,32 @@
       border:2rpx solid rgb(187,187,187);
       color:rgb(0,0,0);
 }
+.new_visitor .new_visitor_row .new_visitor_row_r .accomNameBox{
+      position: absolute;
+      width: 100%;
+      top: 66rpx;
+      left: 0;
+      min-height: 55rpx ;
+      max-height:170rpx ;
+      background-color: white;
+      box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.5);
+      z-index: 99;
+}
+.new_visitor .new_visitor_row .new_visitor_row_r .accomNameBox .accomNameRow{
+      width: 100%;
+      height: 55rpx;
+      font-size: 25rpx;
+      color:#6e6e6e;
+      box-sizing: border-box;
+      border-left:1rpx solid #c7c7c7;
+      border-right:1rpx solid #c7c7c7;
+      border-bottom:1rpx solid #c7c7c7;
+      text-align: left;
+      padding-left: 5rpx;
+      background-color: white;
+}
+
+
 .new_visitor .new_visitor_handles{
       width: 100%;
       margin-top: 30rpx;
@@ -207,4 +324,37 @@
 }
 .new_visitor .new_visitor_handles .new_visitor_handles_r{
       border-top: 1rpx solid transparent;
+}
+
+
+
+.new_car{
+      top: 30%;
+      left:5%;
+      /* padding-top: 50rpx; */
+}
+.new_car .new_visitor_header{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+}
+.new_car .new_visitor_header .new_car_l{
+      width: 150rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+.new_car .new_visitor_header .new_car_l text{
+      line-height: 0;
+}
+.new_car .new_visitor_header .new_car_r{
+      width: 150rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+.new_car .new_visitor_header .new_car_r text{
+      line-height: 0;
 }

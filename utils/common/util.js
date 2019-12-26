@@ -7,6 +7,7 @@
  */
 import objectUtil from './object.util'
 
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -18,10 +19,12 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
 
 function getCurrentMonthTime (date) {
   const year = date.getFullYear()
@@ -235,7 +238,7 @@ export function transmitParam(Param,Url) {
   var JsonParam = this.mapToJson(StrMapParam)
   const app = getApp()
   var Param = {
-      "AppID":"wx9e4895714e80e3f1",
+      "AppID":app.AppID,
       "SchoolID":app.globalData.schoolID,
       "Param":JsonParam,
       "Url":Url,
@@ -249,7 +252,7 @@ export function transmitParamGet(Url) {
   
   const app = getApp()
   var Param = {
-      "AppID":"wx9e4895714e80e3f1",
+      "AppID":app.AppID,
       "SchoolID":app.globalData.schoolID,
       "Param":null,
       "Url":Url,
@@ -263,14 +266,23 @@ export function transmitParamPut(Url) {
   
   const app = getApp()
   var Param = {
-      "AppID":"wx9e4895714e80e3f1",
+      "AppID":app.AppID,
       "SchoolID":app.globalData.schoolID,
       "Param":{},
       "Url":Url,
       "UserID":app.globalData.userID,
   }
-
   return Param
+}
+
+
+export function unique(arr) {
+  //定义常量 res,值为一个Map对象实例
+  const res = new Map();
+  
+  //返回arr数组过滤后的结果，结果为一个数组
+  //过滤条件是，如果res中没有某个键，就设置这个键的值为1
+  return arr.filter((a) => !res.has(a) && res.set(a, 1))
 }
 
 export function convertHtmlToText(inputText) {
@@ -329,4 +341,5 @@ module.exports = {
   transmitParam: transmitParam,
   transmitParamGet:transmitParamGet,
   transmitParamPut:transmitParamPut,
+  unique
 }

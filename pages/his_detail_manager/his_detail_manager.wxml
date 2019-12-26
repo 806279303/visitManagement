@@ -4,7 +4,11 @@
 <!--components/newVisitor/newVisitor.wxml-->
 <form bindsubmit="formSubmit" class="new_vis_box" style="height:{{winHei}}">
       <view class="userImg">
-            <view class="user_img_box"></view>
+            <!-- <view class="user_img_box" catchtap="toUserInfo"></view> -->
+            <view class="user_img_box">
+                  <image class="" wx:if="{{!isVisitorImageErr}}" src="{{queryInfo.visitor_image}}" mode="scaleToFill" lazy-load="false" binderror="showErrorVisitorImage" bindload=""/>
+                  <image class="fiftyPer" wx:else src="../../images/visitor/no_userimage.png" mode="scaleToFill" lazy-load="false" bindload=""/>
+            </view>
       </view>
       <view class="row">
             <view class="l_col">
@@ -13,7 +17,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text"/>
+                  <input type="text" value="{{queryInfo.userName}}" disabled="{{true}}"/>
             </view>
       </view>
       <view class="row">
@@ -23,12 +27,12 @@
                   </text>
             </view>
             <view class="r_col">
-                  <!-- <input type="text"/> -->
+                  <input type="text" value="{{queryInfo.registerTime}}" disabled="{{true}}"/>
                   <!-- <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">请选择></picker> -->
                   <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
                         <view>{{time}}</view>
                   </picker> -->
-                  <picktime/>
+                  <!-- <picktime/> -->
             </view>
       </view>
       <view class="row">
@@ -38,8 +42,8 @@
                   </text>
             </view>
             <view class="r_col">
-                  <!-- <input type="text"/> -->
-                  请选择>
+                  <input type="text" value="{{queryInfo.visitedReason}}" disabled="{{true}}"/>
+                  <!-- 请选择> -->
             </view>
       </view>
       <view class="row">
@@ -49,7 +53,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text"/>
+                  <input type="text" value="{{queryInfo.total}}" disabled="{{true}}"/>
             </view>
       </view>
       <view class="row">
@@ -59,7 +63,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text"/>
+                  <input type="text" value="{{queryInfo.carNum}}" disabled="{{true}}"/>
             </view>
       </view>
       <view class="row">
@@ -69,7 +73,7 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text"/>
+                  <input type="text" value="{{queryInfo.carriedPackage}}" disabled="{{true}}"/>
             </view>
       </view>
       <view class="row">
@@ -79,13 +83,13 @@
                   </text>
             </view>
             <view class="r_col">
-                  <input type="text"/>
+                  <input type="text" value="{{queryInfo.memo}}" disabled="{{true}}"/>
             </view>
       </view>
 </form>
 
 <view class="handle_btns">
-      <view class="handle_btns_l">驳回</view>
+      <view class="handle_btns_l" catchtap="rejectVis">驳回</view>
       <view class="handle_btns_r global_linear_gradient" catchtap="openVisOptions">通过</view>
 </view>
 
@@ -153,7 +157,7 @@
                         楼宇：
                   </view>
                   <view class="vis_options_row_r">
-                        <select></select>
+                        <select data="{{buildings}}" bind:selectChanged="buildingChanged"></select>
                   </view>
             </view>
             <view class="vis_options_row">
@@ -161,13 +165,49 @@
                         房间：
                   </view>
                   <view class="vis_options_row_r">
-                        <select></select>
+                        <select data="{{rooms}}" bind:selectChanged="roomChanged"></select>
                   </view>
             </view>
 
             <view class="vis_options_btns">
                   <view class="vis_options_btns_l" catchtap="cancelVisOptions">取消</view>
-                  <view class="vis_options_btns_r global_linear_gradient" catchtap="">确定</view>
+                  <view class="vis_options_btns_r global_linear_gradient" catchtap="confirmVisOptions">确定</view>
+            </view>
+      </view>
+</screen>
+
+
+
+<!-- 选择驳回原因 -->
+<screen wx:if="{{isChooseRejectOfVisitor}}">
+      <view class="browser vis_options">
+            <view class="vis_options_header">
+                  请选择驳回原因
+            </view>
+
+
+            <view class="vis_options_row">
+                  <view class="vis_options_row_l">
+                        原因：
+                  </view>
+                  <view class="vis_options_row_r">
+                        <select data="{{rejectReason}}" bind:selectChanged="rejectReasonChanged"></select>
+                  </view>
+            </view>
+            <view class="vis_options_row">
+                  <view class="vis_options_row_l">
+                        备注：
+                  </view>
+                  <view class="vis_options_row_r">
+                        <input type="text" class="rejectRemark"  bindinput="rejectRemarkInput"/>
+                  </view>
+            </view>
+
+            <!-- <view class="closeRejectOfVisitor" catchtap="closeRejectOfVisitor">x</view> -->
+
+            <view class="vis_options_btns">
+                  <view class="vis_options_btns_l" catchtap="closeRejectOfVisitor">取消</view>
+                  <view class="vis_options_btns_r global_linear_gradient" catchtap="rejectVisOptions">确定</view>
             </view>
       </view>
 </screen>
