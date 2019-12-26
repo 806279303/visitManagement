@@ -1,8 +1,8 @@
 /*
  * @Description: In User Settings Edit
- * @Author: your name
+ * @Author: DevinWu
  * @Date: 2019-07-29 20:43:52
- * @LastEditTime: 2019-11-27 13:53:19
+ * @LastEditTime: 2019-12-26 16:49:45
  * @LastEditors: Please set LastEditors
  */
 //index.js
@@ -17,7 +17,7 @@
 const app = getApp()
 var MD5 = require('../../utils/common/md5.js');
 var Parser = require('../../utils/xmlParse/dom-parser.js')
-import { wxLoginApi, yunLoginApi, getSchoolApi, subsystemUrlApi } from "../../utils/network/service";
+import { wxLoginApi, yunLoginApi, getSchoolApi, subsystemUrlApi,wxunbindApi} from "../../utils/network/service";
 
 Page({
   data: {
@@ -160,20 +160,44 @@ Page({
     wxLoginApi(urlParam).then(data => {
       wx.hideLoading();
       if (data['error'] == 0) {
-        console.log(data.data['msg'])
-        if (data.data['userInfo']) {
-          that.setData({
-            wxLoginInfo: data.data
-          })
-          that.loginToMainPageWithData(data)
-        } else {
-          that.setData({
-            wxLoginInfo: data.data
-          })
-          that.sendSchoolsInfoRequst();
-          app.showToastError('用户未绑定，请绑定登录绑定')
+        switch (data.data["state"]) {
+          case 0://登录成功
+            that.setData({
+              wxLoginInfo:data.data
+            })
+            that.loginToMainPageWithData(data)
+            break;
+          case 1://用户未绑定微信
+            that.setData({
+                wxLoginInfo:data.data
+             })
+             that.sendSchoolsInfoRequst(); 
+            app.showToastError('用户未绑定，请绑定登录绑定')
+            break;
+          case 2://登录云平台失败
+            app.showToastError('请求失败,请重新登录')
+            that.wxReloginHandler();
+            break; 
+          case 3://获取微信信息失败，一般是获取UinonID失败
+            app.showToastError('获取微信信息失败，重新获取')
+            that.wxReloginHandler();
+            break;
+          case 4://找不到该学校id对应的学校
+            that.setData({
+                wxLoginInfo:data.data
+            })
+            app.globalData.loginInfo = data.data;
+            app.showToastError('获取学校信息失败,请重新登录')
+            that.logoutAction();
+             break;
+          case 5: //其他
+            app.showToastError('获取用户信息,请重新登录')
+            that.wxReloginHandler(); 
+             break;
+          default:
+            break;
         }
-      } else {
+      }else{
         app.showToastError('登录失败,请重新登录')
       }
     }).catch(e => {
@@ -246,8 +270,13 @@ Page({
       dialogComponent && dialogComponent.show();
       return;
     }
-
-
+    
+    if (!this.data.wxLoginInfo.wxsession){
+      app.showToastError('获取用户信息失败,请退出重试')
+      that.wxReloginHandler();
+      return;
+    }
+    
     if (!this.data.schoolName) {
       app.showToastError('请选择学校')
       return;
@@ -487,9 +516,32 @@ Page({
       content: "登录失败",
       success: function (res) {
         if (res.confirm) {
-          that.wxLoginHandler();
+          that.getUserInfo();
         }
       }
+    })
+  },
+
+   //解除绑定
+   logoutAction:function(){
+      
+    var urlParam = {    
+      "schoolID": app.globalData.schoolID,
+      "unionID": app.globalData.loginInfo.wxsession.unionid,
+      "userID": app.globalData.userID,
+    }
+    wxunbindApi(urlParam).then(data => {
+        if(data.data.success){
+          app.globalData.isLogin = false;
+          wx.reLaunch({
+            url: '../../pages/Login/login',
+          }) 
+        }else{
+          
+        }
+        that.wxReloginHandler();
+     }).catch(e => {
+        that.wxReloginHandler();
     })
   },
 
